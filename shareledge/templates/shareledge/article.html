@@ -1,0 +1,229 @@
+{% extends 'shareledge/layout.html' %}
+{% include 'shareledge/articles.html' %}
+{% load static %}
+
+{% block childBody %}
+    <link rel="stylesheet" href="{% static 'shareledge/article.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'shareledge/articles.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="{% static 'shareledge/article.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script>hljs.initHighlightingOnLoad()</script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/go.min.js"></script> -->
+    <div id="article-section" name="article-section">
+        <div id="title-and-image">
+            <font class="title-text">{{ article.title }}</font> <br>
+            <font style="font-size: 18px;">By</font> <a href="{% url 'shareledge:profile' article.user.id %}"><font class="owner-text">{{ article.user }}</font></a> <br>
+            <font class="date-text">{{ article.datePosted }} | {{ article.timePosted }}</font>
+            <br>
+            <img src="{{ article.contentImage }}" id="content-image">
+        </div>
+        <br>
+        <br>
+        
+        
+        <input type="text" style="visibility: hidden; display: none;" id="editted-content" name="e-content">
+        {% if request.user.is_authenticated or request.user.is_authenticated == False %}
+        <div id="main-content" contenteditable="false">
+            {{ article.content|safe }}
+        </div>
+        {% endif %}
+        
+        <div name="content" id="edited-content" style="visibility: hidden; display: none;"></div>
+    </div>
+    {% if request.user.is_authenticated and article.user == request.user %}
+    <div id="button-section">
+        
+        <a style="display: none; visibility: hidden;" name="{{ article.id }}" id="get-article-id"></a>
+        <a class="btn btn-info" id="edit-button" href="{% url 'shareledge:edit' article.id %}">Edit</a>
+        <!-- <a class="btn btn-outline-success" id="saveChanges-button">Save Changes</a> <br>
+        <a class="btn btn-outline-danger" href="#" id="cancel-button">Cancel</a> <br> -->
+    
+    </div>
+    {% endif %}
+
+    <div id="more-articles">
+        <h3><center>Recommended articles on {{ article.category }}</center></h3>
+        {% for artcl in more_articles %}
+        <div class="article-details">
+            <div class="article-image">
+                <a href="{% url 'shareledge:article' artcl.id %}">
+                <img src="{{ artcl.contentImage }}" class="article_image">
+            </div>
+            <div class="article-info">
+                <i class="fa fa-user-circle-o" style="font-size:34px; color:grey"></i> <font class="owner">{{ artcl.user }}</font> <font class="date">{{ artcl.datePosted }} | </font><font class="time">{{ artcl.timePosted }}</font> <br>
+                <font class="title">{{ artcl.title }}</font> <br>
+                <font class="add-det">
+                    <hr>
+                    <font class="art-cmmt">
+                        {% if artcl.on.all.count == 1 %}
+                            {{ artcl.on.all.count }} Comment
+                        {% else %}
+                            {{ artcl.on.all.count }} Comments
+                        {% endif %}
+                        &nbsp;&nbsp;
+                        {% if artcl.views == 1 %}
+                            {{ artcl.views }} View
+                        {% else %}
+                            {{ artcl.views }} Views
+                        {% endif %}
+                    </font>
+                </font>
+            </a> 
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="rating-section">
+        
+        <div id="showAllRatings">
+            <font class="total-user-ratings">{{ article.rate.all.count }} User ratings</font> <br>
+            <font class="total-user-ratings">{{ avg }} Average rating</font> <br> <br>
+            <font class="bar-label">5 stars ({{ r5 }} %)</font>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-warning" role="progressbar" style="width: {{ r5 }}%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="1"></div>
+            </div>
+            <br>
+            <font class="bar-label">4 stars ({{ r4 }} %)</font>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-warning" role="progressbar" style="width: {{ r4 }}%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="1"></div>            
+            </div>
+            <br>
+            <font class="bar-label">3 stars ({{ r3 }} %)</font>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-warning" role="progressbar" style="width: {{ r3 }}%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="1"></div>            
+            </div>
+            <br>
+            <font class="bar-label">2 stars ({{ r2 }} %)</font>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-warning" role="progressbar" style="width: {{ r2 }}%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="1"></div>            
+            </div>
+            <br>
+            <font class="bar-label">1 star ({{ r1 }} %)</font>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-warning" role="progressbar" style="width: {{ r1 }}%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="1"></div>            
+            </div>
+        </div>
+        {% if request.user.is_authenticated and not rated %}
+        <h3><center>Rate article</center></h3>
+        <form method="POST" action="{% url 'shareledge:article' article.id %}">
+        {% csrf_token %}
+        <div id="stars">
+            <button type="submit" class="fa fa-star" id="s1" name="s1" style="font-size: 30px; border:none; background-color:transparent; width:35px"></button>
+            <button type="submit" class="fa fa-star" id="s2" name="s2" style="font-size: 30px; border:none; background-color:transparent; width:35px"></button>
+            <button type="submit" class="fa fa-star" id="s3" name="s3" style="font-size: 30px; border:none; background-color:transparent; width:35px"></button>
+            <button type="submit" class="fa fa-star" id="s4" name="s4" style="font-size: 30px; border:none; background-color:transparent; width:35px"></button>
+            <button type="submit" class="fa fa-star" id="s5" name="s5" style="font-size: 30px; border:none; background-color:transparent; width:35px"></button>
+        
+        </div>
+        </form>
+        {% elif request.user.is_authenticated == False %}
+        <div id="sign-in-to-rate">
+            <br>
+            <h1 style="font-family: Tisa;"><bold><center>Please Sign in to rate this article</center></bold></h1>
+        </div>
+        {% endif %}
+    </div>
+    {% if request.user.is_authenticated and rated %}
+    <div id="thanks-for-rating">
+        <h3><center><font style="color: green;">Thanks for rating the article!</font></center></h3>
+    </div>
+    {% endif %}
+
+    <div id="comment-section">
+        <h3><center>Comments ({{ comment_count }})</center></h3>
+        <div id="comments">
+            {% for comment in comments %}
+                <div class="cmmt">
+                    <i class="fa fa-user-circle-o" style="font-size:28px; color:grey"></i> <font id="cmmt-owner">{{ comment.user }}</font> 
+                    {% if comment.user == article.user %}
+                        <font style="position: relative; bottom: 5px;">♛</font>
+                        
+                    {% endif %}
+                    <font class="cmmt-dt">{{ comment.datePosted }}</font> <font style="position: relative; bottom: 5px;">at</font> <font class="cmmt-dt"> {{ comment.timePosted }}</font><br>
+                    <div id="cmmt-msg">{{ comment.message|safe }}</div>
+                </div>
+                <hr>
+                <br>
+            {% endfor %}
+        </div>
+
+    {% if request.user == article.user %}
+    <font id="clue" style="display:none;">True</font>
+    {% else %}
+    <font id="clue" style="display:none;">False</font>
+    {% endif %}
+
+    <input id="comment-user" type="hidden" value="{{ request.user }}">
+    <input id="comment-datePosted" type="hidden" value="{% now "M d, Y" %}">
+    <input id="comment-timePosted" type="hidden" value="{% now "H:i" %}">
+
+        {% if request.user.is_authenticated %}
+        <div id="comment-form">
+            <form action="{% url 'shareledge:edit' article.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label><font class="label">Post Comment</font></label>
+                    <div id="comment" contenteditable="True" placeholder="Your comment starts here..." class="form-control">
+                    </div>
+                </div>
+                <br>
+                <input type="hidden" name="message" id="comment-data">
+                <input type="submit" name="placeComment" value="Comment" class="btn btn-outline-primary" id="comment-submit">
+            </form>
+        </div>
+    </div>
+        {% endif %}
+
+    <div id="subscribe-section">
+        <h3><center>Subscribe to get notified for more articles by {{ article.user }}</center></h3> <br>
+        <form action="{% url 'shareledge:subscribe' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label><font class="label">Email</font></label>
+                <input type="email" placeholder="Enter email" name="email" class="form-control">
+            </div>
+            <br>
+            <input type="submit" class="btn btn-outline-danger" value="Subscribe">
+        </form>
+    </div>
+
+    <script>
+        $('#comment-submit').click(function (event) {
+            event.preventDefault()
+            var articleId = "{{ article.id }}"
+            var content = $(`#comment`).html()
+            var clue = $('#clue').html()
+
+            $.ajax({
+            type: "POST",
+            url: `/articles/comment/${articleId}`,
+            data: {
+                //csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                dataJson:JSON.stringify({content:content})
+            },
+            success: function(data) {
+                var html = ""
+                var cUser = $('#comment-user').val()
+                var cDate = $('#comment-datePosted').val()
+                var cTime = $('#comment-timePosted').val()
+                var $div = $("<div>", {"class": "cmmt"});
+                if (clue === "True") {
+                    html = `<i class="fa fa-user-circle-o" style="font-size:28px; color:grey"></i> <font id="cmmt-owner">${cUser}</font><font style="position: relative; bottom: 5px;">♛</font></font><font class="cmmt-dt"> ${cDate}</font> <font style="position: relative; bottom: 5px;">at</font> <font class="cmmt-dt"> ${cTime}</font><br><font id="cmmt-msg">${content}</font> <br> <hr> <br>`
+                }
+                else if (clue === "False") {
+                    html = `<i class="fa fa-user-circle-o" style="font-size:28px; color:grey"></i> <font id="cmmt-owner">${cUser}</font><font class="cmmt-dt"> ${cDate}</font> <font style="position: relative; bottom: 5px;">at</font> <font class="cmmt-dt"> ${cTime}</font><br><font id="cmmt-msg">${content}</font> <br> <hr> <br>`
+                }
+                $div.html(html)
+                $(`#comments`).append($div)
+                //$(`.post-object-content${postId}`).html(content)
+            }
+            })
+        })
+    </script>
+{% endblock %}

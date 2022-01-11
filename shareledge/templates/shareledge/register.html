@@ -1,0 +1,58 @@
+{% extends 'shareledge/layout.html' %}
+{% include 'shareledge/article.html' %}
+{% load static %}
+
+{% block childBody %}
+    <link rel="stylesheet" href="{% static 'shareledge/article.css' %}">
+    <div id="more-articles">
+        <form action="{% url 'shareledge:register' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label><font class="label">Username</font></label>
+                <input type="text" class="form-control" name="username">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">Password</font></label>
+                <input type="password" class="form-control" name="password">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">Re-enter Password</font></label>
+                <input type="password" class="form-control" name="confirmation">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">First Name</font></label>
+                <input type="text" class="form-control" name="first-name">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">Last Name</font></label>
+                <input type="text" class="form-control" name="last-name">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">Email</font></label>
+                <input type="email" class="form-control" name="email">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">Phone Number</font></label>
+                <input type="number" class="form-control" name="phone-no">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">Job</font></label>
+                <input type="text" class="form-control" name="job">
+            </div>
+            <br>
+            <div class="form-group">
+                <label><font class="label">Company</font></label>
+                <input type="text" class="form-control" name="company">
+            </div>
+            <br>
+            <input type="submit" class="btn btn-outline-success" value="Register">
+        </form>
+    </div>
+{% endblock %}

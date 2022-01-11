@@ -1,0 +1,76 @@
+{% extends 'shareledge/layout.html' %}
+{% load static %}
+
+{% block childBody %}
+    
+    <link rel="stylesheet" href="{% static 'shareledge/createArticle.css' %}">
+    <script src="{% static 'shareledge/createArticle.js' %}"></script>
+    <head>
+      
+    </head>
+    <!-- {% if toEdit %}
+    <form id="article-create-form" method="POST" action="{% url 'shareledge:edit' article_obj.id %}">
+    {% else %}
+    <form id="article-create-form" method="POST" action="{% url 'shareledge:createPage' %}">
+    {% endif %}
+        {% csrf_token %}
+        {{ myform.media }}
+        <div class="form-group">
+          <label for="inp1"><font class="label">Title</font></label>
+          <input type="text" class="form-control" placeholder="Enter article title" name="title" value="{{ article_obj.title }}">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="inp2"><font class="label">Category</font></label>
+            <input type="text" class="form-control" placeholder="Enter article category" name="category" value="{{ article_obj.category }}">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="inp3"><font class="label">Content</font></label>
+          <textarea class="form-control" name="ctent" id="djv">{{ article_obj.content }}</textarea>
+            
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="inp4"><font class="label">Content Display Image URL</font></label>
+          <input type="text" class="form-control" id="inp4" placeholder="Enter image url" name="imgUrl" value="{{ article_obj.contentImage }}">
+        </div>
+        <br>
+        <input type="hidden" name="content" id="inp-content">
+        <button type="submit" class="btn btn-primary" id="sbmt">Submit</button>
+    </form> -->
+    
+    {% if toEdit %}
+    <form id="article-create-form" method="POST" action="{% url 'shareledge:edit' article_obj.id %}">
+      {% else %}
+      <form id="article-create-form" method="POST" action="{% url 'shareledge:createPage' %}">
+      {% endif %}
+      {% csrf_token %}
+      {{ myform.media }}
+      <div class="form-group">
+        <label><font class="label">Title</font></label>
+        {{ myform.title }}
+      </div>
+      <br>
+      <div class="form-group">
+        <label><font class="label">Category</font></label>
+        {{ myform.category }}
+      </div>
+      <br>
+      <div class="form-group">
+          <label><font class="label">Content Display Image URL</font></label>
+          {{ myform.contentImage }}
+      </div>
+      <br>
+      
+        <label><font class="label">Content</font></label> <br>
+      
+        {{ myform.content }}
+      
+      <br>
+      <button type="submit" class="btn btn-primary" id="sbmt">Submit</button>
+      
+    </form>
+  
+{% endblock %}

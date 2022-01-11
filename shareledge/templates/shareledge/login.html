@@ -1,0 +1,27 @@
+{% extends 'shareledge/layout.html' %}
+{% include 'shareledge/register.html' %}
+{% load static %}
+
+{% block childBody %}
+{{ message }}
+{{ un }}
+{{ pw }}
+{{ usr }}
+    <link rel="stylesheet" href="{% static 'shareledge/article.css' %}">
+    <div id="more-articles">
+    <form method="POST" action="{% url 'shareledge:login' %}">
+        {% csrf_token %}
+        <div id="form-group">
+            <label><font class="label">Username</font></label>
+            <input type="text" class="form-control" name="username">
+        </div>
+        <br>
+        <div id="form-group">
+            <label><font class="label">Password</font></label>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <br>
+        <input type="submit" class="btn btn-outline-success" value="Login">
+    </form>
+    </div>
+{% endblock %}

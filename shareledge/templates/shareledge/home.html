@@ -1,0 +1,31 @@
+{% extends 'shareledge/layout.html' %}
+{% load static %}
+
+{% block childBody %}
+    <script src="{% static 'shareledge/home.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'shareledge/home.css' %}">
+    <div class="home-div">
+        <font class="heading">ShareLEDGE</font>
+        <font class="h-text-1">Write to share</font>
+        <font class="h-text-2">and</font>
+        <font class="h-text-3">Let us take care</font>
+        <font class="get-started"><a href="{% url 'shareledge:userGuide' %}">Get started</a></font>
+        <font class="signin-page-n"><a href="{% url 'shareledge:login' %}">Sign In</a></font>
+        <font class="read-articles-n"><a href="{% url 'shareledge:allArticles' %}">Check articles</a></font>
+
+    <div class="sky">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+
+    </div>
+
+    </div>
+{% endblock %}

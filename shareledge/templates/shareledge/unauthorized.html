@@ -1,0 +1,37 @@
+{% extends 'shareledge/layout.html' %}
+
+{% block childBody %}
+    <style>
+        #error-div {
+            padding: 10px;
+            margin: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        #err {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        #message-err {
+            position: relative;
+            margin: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #text-err {
+            font-size: 30px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+
+    <div id="error-div">
+        <img src="https://www.angelsnumbers.com/wp-content/uploads/2019/04/401.jpg" id="err">
+    </div>
+    <div id="message-err">
+        <font id="text-err">You are not authorized to view this page</font>
+    </div>
+{% endblock %}
