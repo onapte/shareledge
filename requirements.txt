@@ -1,0 +1,4 @@
+Additional python packages added to the project:
+1) Ckeditor: Installed using 'pip install django-ckeditor'
+2) Celery: Installed using 'pip install django-celery'
+3) Js assets: Installed using 'pip install django-js-asset'
