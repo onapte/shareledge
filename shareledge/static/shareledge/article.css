@@ -1,0 +1,160 @@
+#article-section {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    /* margin-left: 70px;
+    margin-right: 70px; */
+    
+    padding: 10px;
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: white;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 4px 8px 0 black , 0 6px 20px 0 black;
+}
+
+#comment-section {
+    box-shadow: none;
+    background-color: white;
+    padding: 10px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+body {
+    background-color: rgb(240, 240, 240);
+}
+
+img {
+    
+    max-width: 100%;
+    text-align: center;
+}
+
+code {
+    width: 100%;
+    max-width: 500px;
+}
+
+#title-and-image {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 45px;
+}
+
+#button-section {
+    text-align: center;
+    font-size: 22px;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    margin-left: 40%;
+}
+
+#main-content {
+    font-size: 20px;
+    /* border: 1px solid cadetblue; */
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+div {
+    display: flexbox;
+    flex-wrap: wrap;;
+}
+
+.owner-text {
+    font-size: 18px;
+    font-family:cursive;
+    color: cadetblue;
+}
+
+.date-text {
+    font-size: 16px;
+    color: grey;
+    user-select: none;
+    position: relative;
+    bottom: 40px;
+}
+
+#saveChanges-button, #edit-button, #cancel-button {
+    width: 150px;
+}
+
+/* #comment-section {
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 30px;
+    padding: 10px;
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: white;
+} */
+
+.label {
+    font-family: Arial;
+    font-size: 24px;
+    color: dodgerblue;
+    
+}
+
+
+
+#cmmt-owner {
+    font-size: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: relative;
+    bottom: 5px;
+}
+
+.cmmt-dt {
+    font-size: 14px;
+    color: lightslategray;
+    position: relative;
+    bottom: 6px;
+}
+
+#cmmt-msg {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+#more-articles, #thanks-for-rating, #subscribe-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: white;
+}
+
+#rating-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: white;
+}
+
+.checked {
+    color: orange;
+}
+
+.bar-label {
+    font-family: Arial;
+    font-size: 20px;
+    color: cadetblue;
+}
+
+.total-user-ratings {
+    font-size: 23px;
+    font-weight: bold;
+    color: darkblue
+}
+
+#sign-in-to-rate {
+    margin-top: 20px;
+    
+}

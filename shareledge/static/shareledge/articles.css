@@ -1,0 +1,162 @@
+#list_of_articles {
+    background-color: red;
+    margin: 7px;
+    display: flex;
+    text-align: center;
+}
+
+.article_info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 10px;
+    background-color: yellow;
+    height: 100%;
+    border: solid black 2px;
+    /* position: relative;
+    left: 30%; */
+    display: flex;
+    resize: vertical;
+    box-sizing: border-box;
+    font-size: 2vw;
+}
+
+.article_image {
+    height: 304px;
+    
+    max-width: 100%;
+}
+
+.article_image_area {
+    background-color: green;
+    flex-grow: 1;
+    object-fit: cover;
+}
+
+.aList {
+    background-color: royalblue;
+    padding: none;
+}
+
+.article-details {
+    margin: 2.5%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.article-image {
+    width: 400px;
+    /* border: 2px solid greenyellow; */
+    border-right: none;
+    background-color: white;
+    height: 304px;
+
+}
+
+.article-info {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-family:sans-serif;
+    font-size: 20px;
+    width: 400px;
+    /* border: 2px solid greenyellow; */
+    border-left: none;
+    user-select: none;
+    background-color: white;
+    height: 304px;
+    position: relative;
+}
+
+.owner {
+    font-size: 18px;
+    font-family: Tisa;
+    position: relative;
+    bottom: 13px;
+}
+
+.date, .time {
+    font-size: 12px;
+    color: darkgreen;
+    font-family: Arial;
+    position: absolute;
+    
+    top: 23px;
+}
+
+.date {
+    left: 49px;
+}
+
+.time {
+    left: 163px;
+}
+
+.title {
+    font-weight: bolder;
+    font-size: 20px;
+    position: relative;
+    top: 20px;
+}
+
+
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-image: url('https://img.freepik.com/free-vector/bokeh-background_23-2148486863.jpg?size=626&ext=jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.add-det {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: cadetblue;
+}
+
+.art-cmmt {
+    position: relative;
+    bottom: 5px;
+}
+
+.rts {
+    color: none;
+}
+
+#edit-button {
+    position: relative;;
+    right: 35%;
+}
+
+#search-section {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#search-form {
+    width: 500px;;
+}
+
+h1 {
+    font-weight:100;
+    color: royalblue;
+    font-family: Arial;
+}

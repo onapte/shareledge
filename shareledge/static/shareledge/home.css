@@ -1,0 +1,280 @@
+.home-div {
+    height: 100%;
+    background-color: black;
+    display: -webkit-box;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    }
+
+body {
+    background-color: black;
+}
+    
+    .sky {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    -webkit-transform: rotateZ(90deg);
+    transform: rotateZ(90deg);
+    }
+    
+    .star {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 2px;
+    border-radius: 885px;
+    background: linear-gradient(-45deg,
+        #eef0f5, rgba(0, 0, 255, 0));
+    
+    -webkit-filter: drop-shadow(0 0 6px #eef1f8);
+    filter: drop-shadow(0 0 6px #d7dff0);
+    -webkit-animation: tail 3000ms ease-in-out infinite,
+        shooting 3000ms ease-in-out infinite;
+    animation: tail 3000ms ease-in-out infinite,
+        shooting 3000ms ease-in-out infinite;
+    }
+    
+    .star::before,
+    .star::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+        -45deg,
+        rgba(0, 0, 255, 0),
+        #eaeef8,
+        rgba(0, 0, 255, 0)
+    );
+    -webkit-transform: translateX(50%) rotateZ(45deg);
+    transform: translateX(50%) rotateZ(45deg);
+    border-radius: 100%;
+    -webkit-animation: shining 3000ms ease-in-out infinite;
+    animation: shining 3000ms ease-in-out infinite;
+    }
+    .star::after {
+    -webkit-transform: translateX(50%) rotateZ(-45deg);
+    transform: translateX(50%) rotateZ(-45deg);
+    }
+    
+    /* Here we are adding location of each
+    nth-child, animations, delays, and
+    before and after effects to each
+    and every balls(stars) */
+    .star:nth-child(1) {
+    top: calc(50% - -119px);
+    left: calc(50% - 43px);
+    -webkit-animation-delay: 4000ms;
+    animation-delay: 4000ms;
+    }
+    .star:nth-child(1)::before,
+    .star:nth-child(1)::after {
+    -webkit-animation-delay: 4000ms;
+    animation-delay: 4000ms;
+    }
+    .star:nth-child(2) {
+    top: calc(50% - -43px);
+    left: calc(50% - 37px);
+    -webkit-animation-delay: 5000ms;
+    animation-delay: 5000ms;
+    }
+    .star:nth-child(2)::before,
+    .star:nth-child(2)::after {
+    -webkit-animation-delay: 5000ms;
+    animation-delay: 5000ms;
+    }
+    .star:nth-child(3) {
+    top: calc(50% - -40px);
+    left: calc(50% - 222px);
+    -webkit-animation-delay: 7000ms;
+    animation-delay: 7000ms;
+    }
+    .star:nth-child(3)::before,
+    .star:nth-child(3)::after {
+    -webkit-animation-delay: 7000ms;
+    animation-delay: 7000ms;
+    }
+    .star:nth-child(4) {
+    top: calc(50% - -29px);
+    left: calc(50% - 113px);
+    -webkit-animation-delay: 7000ms;
+    animation-delay: 7000ms;
+    }
+    .star:nth-child(4)::before,
+    .star:nth-child(4)::after {
+    -webkit-animation-delay: 7000ms;
+    animation-delay: 7000ms;
+    }
+    .star:nth-child(5) {
+    top: calc(50% - 146px);
+    left: calc(50% - 112px);
+    -webkit-animation-delay: 3000ms;
+    animation-delay: 3000ms;
+    }
+    .star:nth-child(5)::before,
+    .star:nth-child(5)::after {
+    -webkit-animation-delay: 3000ms;
+    animation-delay: 3000ms;
+    }
+    .star:nth-child(6) {
+    top: calc(50% - -108px);
+    left: calc(50% - 160px);
+    -webkit-animation-delay: 3000ms;
+    animation-delay: 3000ms;
+    }
+    .star:nth-child(6)::before,
+    .star:nth-child(6)::after {
+    -webkit-animation-delay: 3000ms;
+    animation-delay: 3000ms;
+    }
+    .star:nth-child(7) {
+    top: calc(50% - 52px);
+    left: calc(50% - 72px);
+    -webkit-animation-delay: 7000ms;
+    animation-delay: 7000ms;
+    }
+    .star:nth-child(7)::before,
+    .star:nth-child(7)::after {
+    -webkit-animation-delay: 7000ms;
+    animation-delay: 7000ms;
+    }
+    
+    @keyframes tail {
+    0% {
+        width: 0;
+    }
+    30% {
+        width: 100px;
+    }
+    100% {
+        width: 0;
+    }
+    }
+    
+    @keyframes shining {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 30px;
+    }
+    100% {
+        width: 0;
+    }
+    }
+    
+    @-webkit-keyframes shining {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 30px;
+    }
+    100% {
+        width: 0;
+    }
+    }
+    
+    @-webkit-keyframes tail {
+    0% {
+        width: 0;
+    }
+    30% {
+        width: 100px;
+    }
+    100% {
+        width: 0;
+    }
+    }
+    
+    @-webkit-keyframes shooting {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    100% {
+        -webkit-transform: translateX(270px);
+        transform: translateX(270px);
+    }
+    }
+    
+    @keyframes shooting {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    100% {
+        -webkit-transform: translateX(270px);
+        transform: translateX(270px);
+    }
+    }
+
+.heading {
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 60px;
+    position: relative;
+    left: 14%;
+    height: 300px;
+    top: 150px;
+    width: 300px;
+}
+
+.h-text-1 {
+    color: aqua;
+    font-weight: bold;
+    font-size: 50px;
+    position: absolute;
+    left: 15%;
+    top: 250px;
+    
+    width: 380px;
+}
+.h-text-2 {
+    color: aqua;
+    font-weight: bold;
+    font-size: 50px;
+    position: absolute;
+    left: 22%;
+    top: 320px;
+    
+    width: 200px;
+}
+.h-text-3 {
+    color: aqua;
+    font-weight: bold;
+    font-size: 50px;
+    position: absolute;
+    left: 14%;
+    top: 390px;
+    
+    width: 380px;
+}
+
+.get-started {
+    text-decoration: none;
+    position: absolute;
+    left: 22%;
+    top: 500px;
+    font-size: 20px;
+}
+.signin-page-n {
+    text-decoration: none;
+    position: absolute;
+    left: 23%;
+    top: 550px;
+    font-size: 20px;
+}
+.read-articles-n {
+    text-decoration: none;
+    position: absolute;
+    left: 21.5%;
+    top: 600px;
+    font-size: 20px;
+}
