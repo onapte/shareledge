@@ -1,0 +1,31 @@
+#user-dets {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 30px;
+    padding: 15px;
+    background-color: rgb(245, 245, 245);
+}
+
+#user-basic, #user-add-info {
+    text-align: center;
+    font-family: Arial;
+}
+
+#user-basic {
+    font-size: 23px;
+}
+
+#user-add-info {
+    color: orange;
+    font-size: 22px;
+    padding: 17px;
+    text-align: left;
+}
+
+.label {
+    font-size: 23px;
+    font-family: Tisa;
+    color: black;
+}
