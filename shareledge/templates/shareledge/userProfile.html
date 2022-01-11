@@ -1,0 +1,105 @@
+{% extends 'shareledge/layout.html' %}
+{% load static %}
+
+{% block childBody %}
+    <link rel="stylesheet" href="{% static 'shareledge/userProfile.css' %}">
+    <link rel="stylesheet" href="{% static 'shareledge/articles.css' %}">
+    <div id="user-dets">
+        <div id="user-add-info">
+            <font class="label">First Name: </font> {{ theUser.first_name }} <br> 
+            <font class="label">Last Name: </font> {{ theUser.last_name }} <br> 
+            <font class="label">Email: </font> {{ theUser.email }} <br> 
+            <font class="label">Last login: </font> {{ theUser.last_login }} <br>
+            <font class="label">Date Joined: </font> {{ theUser.date_joined }} <br> 
+            <font class="label">Status: </font>
+            {% if theUser.is_active %}
+            <font style="color: lime;">Active</font>
+            {% else %}
+            <font style="color: red;">Inactive</font>
+            {% endif %}
+            <br>
+        </div>
+        <div id="user-basic">
+            <i class="fa fa-user-circle-o" style="font-size: 150px;"></i> <br>
+            {{ theUser.username }} <br>
+            <font style="color: grey;">{{ theUser.job }}</font>
+        </div>
+    </div>
+    <h1><center>Articles published by {{ theUser.username }}</center></h1>
+    <div id="user-articles">
+        {% for article in userArticles %}
+        <div class="article-details">
+            <div class="article-image">
+                <a href="{% url 'shareledge:article' article.id %}">
+                <img src="{{ article.contentImage }}" class="article_image">
+            </div>
+            <div class="article-info">
+                <i class="fa fa-user-circle-o" style="font-size:34px; color:grey"></i> <font class="owner">{{ article.user }}</font> <font class="date">{{ article.datePosted }} | </font><font class="time">{{ article.timePosted }}</font> <br>
+                <font class="title">{{ article.title }}</font> <br>
+                <font class="add-det">
+                    <hr>
+                    <font class="art-cmmt">
+                        {% if article.on.all.count == 1 %}
+                            {{ article.on.all.count }} Comment
+                        {% else %}
+                            {{ article.on.all.count }} Comments
+                        {% endif %}
+                        &nbsp;&nbsp;
+                        {% if article.views == 1 %}
+                            {{ article.views }} View
+                        {% else %}
+                            {{ article.views }} Views
+                        {% endif %}
+                        &nbsp; &nbsp;
+                        <font id="rts">
+                        {{ article.rating }} &nbsp;
+                        {% if article.rating == 5 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        {% elif article.rating == 4 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        {% elif article.rating == 3 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        {% elif article.rating == 2 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        {% elif article.rating == 1 %}
+                            <i class="fa fa-star"></i>
+                        {% elif article.rating > 4 and article.rating < 5 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full"></i>
+                        {% elif article.rating > 3 and article.rating < 4 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full"></i>
+                        {% elif article.rating > 2 and article.rating < 3 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full"></i>
+                        {% elif article.rating > 1 and article.rating < 2 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full"></i>
+                        {% else %}
+                            <i class="fa fa-star"></i>
+                        {% endif %}
+                            </font>
+                    </font>
+                </font>
+                </a> 
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
